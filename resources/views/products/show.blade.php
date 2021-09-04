@@ -17,9 +17,7 @@
                             <form action="/cart" method="post">
                             @csrf
                             <div class="d-flex flex-row">
-                                <input type="hidden" name="quantity" value="{{ $item->detail }}">
-                                <input type="hidden" name="quantity" value="{{ $item->name }}">
-
+                                <input type="hidden" name="id" value="{{ $item->id }}">                            
                                 <input class="form-control form-control-lg text-center mr-4" style="width:70px;" type="number" value="1" name="quantity">
                                 <input class="btn btn-outline-dark mt-auto"　type="submit" value="カートに追加">
                             </div>                       

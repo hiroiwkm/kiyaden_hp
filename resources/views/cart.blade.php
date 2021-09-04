@@ -9,7 +9,7 @@
                 <thead>
                     <tr>
                         <th style="width:60%" class="text-center">商品</th>
-                        <th style="width:12%">単価(税別)</th>
+                        <th style="width:12%">金額(税別)</th>
                         <th style="width:10%">数量</th>
                         <th style="width:16%"></th>
                     </tr>
@@ -22,13 +22,13 @@
                                     <img src="https://via.placeholder.com/250x250/5fa9f8/ffffff" alt="" class="img-fluid d-none d-md-block rounded mb-2 shadow ">
                                 </div>
                                 <div class="col-md-9 text-left mt-sm-2">
-                                    <h4>商品名</h4>
+                                    <h4>{{ $products->name }}</h4>
                                 </div>
                             </div>
                         </td>
-                        <td data-th="Price">×××円</td>
+                        <td data-th="Price">{{ $products->price }}円</td>
                         <td data-th="Quantity">
-                            <input type="number" class="form-control form-control-lg text-center" value="1">
+                            <input type="number" class="form-control form-control-lg text-center" value="{{ $quantity }}">
                         </td>
                         <td class="actions" data-th="">
                             <div class="text-right">

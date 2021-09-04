@@ -128,18 +128,18 @@
           
           <!-- About Section Content-->
           <div class="row justify-content-center">
-            <img class="col-lg-4 img-fluid w-25" src="img\shop.jpg">
-            <div class="col-lg-5 me-auto p-5">
+            <img class="col-lg-5 img-fluid w-25" src="img\shop.jpg">
+            <div class="col-lg-4 me-auto p-5">
               <p class="lead">テキストテキストテキストテキスト</p>
               <p class="">テキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト</p>             
             </div>
           </div>
-          <div class="row py-5 justify-content-center">
-            <div class="col-lg-5 me-auto p-5">
+          <div class="row py-3 justify-content-center">
+            <div class="col-lg-6 me-auto py-5 px-3">
               <p class="lead">テキストテキストテキストテキスト</p>
-              <p class="">テキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト</p>             
+              <p class="">テキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト</p>             
             </div>
-              <img class="col-lg-4" src="img\chef.jpg">
+              <img class="col-lg-3" src="img\chef.jpg">
           </div>
       </div>
     <!-- Infomation Section-->

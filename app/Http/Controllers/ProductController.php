@@ -14,13 +14,18 @@ class ProductController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $items = Product::all();
-        $season_item = Product::where('category1');
-        $categories = Category::all();
+        if ($request->category !== null) {
+            $products = Product::where('category1', $request->category)->orwhere('category2', $request->category)->orwhere('category3', $request->category)->orwhere('category4', $request->category)->orwhere('category5', $request->category)->paginate(15);
+        }else{
+            $products = Product::all();
+        };
 
-        return view('products.index', ['items' => $items, 'seasons' =>$season_item],['categories' => $categories]);
+            $categories = Category::all(); 
+            $selected_category = Category::find($request->category);
+
+            return view('products.index', ['products' => $products,'categories' => $categories, 'selected_category'=>$selected_category]);
 
     }
 

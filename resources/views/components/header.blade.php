@@ -15,7 +15,7 @@
                     </ul>
                         @if(Auth::check())
                         <span class="my-navbar-item text-white">ようこそ, {{ Auth::user()->name }}さん</span>
-                        <a class="nav-link text-white" href="#"><i class="fa fa-cart-arrow-down fa-lg"></i></a>
+                        <a class="nav-link text-white" href="/cart"><i class="fa fa-cart-arrow-down fa-lg"></i></a>
                         <a class="nav-link text-white" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
                         ログアウト
                         </a>
