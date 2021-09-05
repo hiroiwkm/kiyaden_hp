@@ -2,31 +2,25 @@
 
 namespace App\Http\Controllers;
 
-use App\Category;
-use App\Product;
 use Illuminate\Http\Request;
+use Gloudemans\Shoppingcart\Facades\Cart;
+use Illuminate\Support\Facades\Auth;
 
-
-class ProductController extends Controller
+class CartController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(Request $request)
+    public function index()
     {
-        if ($request->category !== null) {
-            $products = Product::where('category1', $request->category)->orwhere('category2', $request->category)->orwhere('category3', $request->category)->orwhere('category4', $request->category)->orwhere('category5', $request->category)->paginate(15);
-        }else{
-            $products = Product::all();
-        };
-
-            $categories = Category::all(); 
-            $selected_category = Category::find($request->category);
-
-            return view('products.index', ['products' => $products,'categories' => $categories, 'selected_category'=>$selected_category]);
-
+        $cart = Cart::instance(Auth::user()->id)->content();
+        $total = 0;
+        foreach ($cart as $c) {
+            $total += $c->qty * $c->price;
+        }
+        return view('carts.index', compact('cart', 'total'));
     }
 
     /**
@@ -47,7 +41,16 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        Cart::add(
+            [
+            'id' => $request->_token, 
+            'name' => $request->name, 
+            'qty' => $request->qty,
+            'price' => $request->price, 
+            'weight' => $request->weight,
+            ] 
+        );
+        return redirect()->route('products.show', $request->get('id'));
     }
 
     /**
@@ -58,9 +61,7 @@ class ProductController extends Controller
      */
     public function show($id)
     {
-        $product = Product::find($id);
-        
-        return view('products.show', ['product' => $product]);
+        //
     }
 
     /**
@@ -81,7 +82,7 @@ class ProductController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request)
     {
         //
     }
