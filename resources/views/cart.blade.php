@@ -19,16 +19,16 @@
                         <td data-th="Product">
                             <div class="row">
                                 <div class="col-md-3 text-left">
-                                    <img src="https://via.placeholder.com/250x250/5fa9f8/ffffff" alt="" class="img-fluid d-none d-md-block rounded mb-2 shadow ">
+                                    <img src="{{ $cart_product->img_url }}" alt="" class="img-fluid d-none d-md-block rounded mb-2 shadow ">
                                 </div>
                                 <div class="col-md-9 text-left mt-sm-2">
-                                    <h4>{{ $products->name }}</h4>
+                                    <h4>{{ $cart_product->name }}</h4>
                                 </div>
                             </div>
                         </td>
-                        <td data-th="Price">{{ $products->price }}円</td>
+                        <td data-th="Price">{{ $cart_product->price }}円</td>
                         <td data-th="Quantity">
-                            <input type="number" class="form-control form-control-lg text-center" value="{{ $quantity }}">
+                            <input type="number" class="form-control form-control-lg text-center" value="{{ $cart_quantity }}">
                         </td>
                         <td class="actions" data-th="">
                             <div class="text-right">
