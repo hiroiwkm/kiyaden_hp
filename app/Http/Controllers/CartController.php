@@ -15,12 +15,13 @@ class CartController extends Controller
      */
     public function index()
     {
-        $cart = Cart::instance(Auth::user()->id)->content();
+        $cart = Cart::content();
         $total = 0;
         foreach ($cart as $c) {
             $total += $c->qty * $c->price;
         }
         return view('carts.index', compact('cart', 'total'));
+        return view('carts.index', ['product_img' => $product_img]);
     }
 
     /**
@@ -50,7 +51,7 @@ class CartController extends Controller
             'weight' => $request->weight,
             ] 
         );
-        return redirect()->route('products.show', $request->get('id'));
+        return redirect()->route('carts.index');
     }
 
     /**
@@ -84,7 +85,12 @@ class CartController extends Controller
      */
     public function update(Request $request)
     {
-        //
+        if( $request->input('delete')){
+            Cart::instance(Auth::user()->id)->remove($request->input('id'));
+        } else {
+            Cart::instance(Auth::user()->id)->update($request->input('id'), $request->input('qty'));
+        }
+        return redirect()->route('carts.index');
     }
 
     /**
