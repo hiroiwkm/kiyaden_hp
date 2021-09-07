@@ -8,7 +8,7 @@
                     <img class="img-fluid" src="{{ asset($product->img_url) }}" alt="{{ $product->name }}" />
                 </div>
                 <div class="col-md-7">
-                    <h3>{{ $product->name }}</h3>
+                    <h3>{{ $product->name }}{{ asset($product->img_url) }}</h3>
                     <div class="py-3">
                         <h5 class="py-3">{{ $product->detail }}</h5>
                         <h5 class="py-3">{{ $product->price }}円(税抜)</h5>
@@ -19,8 +19,9 @@
                             <input type="hidden" name="id" value="{{ $product->id }}">
                             <input type="hidden" name="name" value="{{ $product->name }}">
                             <input type="hidden" name="price" value="{{ $product->price }}">
-                            <input type="hidden" name="weight" value="500">
+                            <input type="hidden" name="weight" value="1">
                             <input class="form-control form-control-lg text-center mr-4" style="width:70px;" type="number" id="quantity" name="qty" min="1" value="1">
+                            <input type="hidden" name="options" value="{{ $product->id }}">
                             <input class="btn btn-outline-dark mt-auto"　type="submit" value="カートに追加">
                             </form>   
                         </div>                     

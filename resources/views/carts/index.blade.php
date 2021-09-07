@@ -18,27 +18,27 @@
                     @foreach ($cart as $product)
                     <tr>
                         <td data-th="Product">
-                            <div class="row">
-                                <div class="col-md-3 text-left">
-                                    <img src="" alt="" class="img-fluid d-none d-md-block rounded mb-2 shadow ">
-                                </div>
                                 <div class="col-md-9 text-left mt-sm-2">
-                                    <h4>{{ $product->name }}</h4>
+                                    <a href="products/{{ $product->options->product_id }}"><h4>{{ $product->name }}</h4>{{ $product->price }}円</a>
                                 </div>
                             </div>
                         </td>
                         <td data-th="Quantity">
-                            <input type="number" class="form-control form-control-lg text-center" value="{{ $product->qty }}">
-                        </td>
-                        <td class="actions" data-th="">
-                            <div class="text-left">
-                                <button class="btn btn-white border-secondary bg-white btn-md mb-2">
-                                    更新
-                                </button>
-                                <button class="btn btn-white border-secondary bg-white btn-md mb-2">
+                            <form  method="PUT" action="{{ route('carts.update') }}">
+                            @csrf
+                                <input type="number" class="form-control form-control-lg text-center" value="{{ $product->qty }}">
+                                <div class="text-left">
+                                    <button type="submit" class="btn btn-white border-secondary bg-white btn-md mb-2">
+                                        更新
+                                    </button>
+                                </div>
+                            </form>
+                            <form  method="PUT" action="{{ route('carts.update') }}">
+                             @csrf
+                                <button type="submit" value="delete" class="btn btn-white border-secondary bg-white btn-md mb-2">
                                     削除
                                 </button>
-                            </div>
+                            </form>
                         </td>
                         <td data-th="Price">{{ $product->price*$product->qty }}円</td>
 
@@ -54,11 +54,14 @@
     </div>
     <div class="row mt-4 d-flex align-items-center">
         <div class="col-sm-6 order-md-2 text-right">
-            <a href="catalog.html" class="btn btn-primary mb-4 btn-lg pl-5 pr-5">購入画面へ</a>
+            <form method="POST" action="{{ route('carts.destroy') }}">
+                @csrf
+                <input type="hidden" name="_method" value="DELETE">
+                <button type="submit" class="btn btn-primary mb-4 btn-lg pl-5 pr-5">購入画面へ</button>
+            </form>
         </div>
         <div class="col-sm-6 mb-3 mb-m-1 order-md-1 text-md-left">
-            <a href="/products">
-                <i class="fa fa-arrow-left mr-2"></i>商品一覧へもどる</a>
+            <a href="/products">←商品一覧へもどる</a>
         </div>
     </div>
 </div>

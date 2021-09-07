@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Gloudemans\Shoppingcart\Facades\Cart;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
+
 
 class CartController extends Controller
 {
@@ -15,13 +17,13 @@ class CartController extends Controller
      */
     public function index()
     {
-        $cart = Cart::content();
+        $cart = Cart::instance(Auth::user()->id)->content();
         $total = 0;
         foreach ($cart as $c) {
             $total += $c->qty * $c->price;
         }
+        
         return view('carts.index', compact('cart', 'total'));
-        return view('carts.index', ['product_img' => $product_img]);
     }
 
     /**
@@ -42,15 +44,17 @@ class CartController extends Controller
      */
     public function store(Request $request)
     {
-        Cart::add(
+        Cart::instance(Auth::user()->id)->add(
             [
             'id' => $request->_token, 
             'name' => $request->name, 
             'qty' => $request->qty,
             'price' => $request->price, 
             'weight' => $request->weight,
+            'options'=> ['product_id'=> $request->id]
             ] 
         );
+
         return redirect()->route('carts.index');
     }
 
@@ -99,8 +103,15 @@ class CartController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Request $request)
     {
-        //
+        $user_shoppingcarts = DB::table('shoppingcart')->where('instance', Auth::user()->id)->get();
+        $count = $user_shoppingcarts->count();
+        $count += 1;
+        Cart::instance(Auth::user()->id)->store;
+        DB::table('shoppingcart')->where('instance', Auth::user()->id)->where('number', null)->update(['number' => $count, 'buy_flag' => true]);
+        Cart::instance(Auth::user()->id)->destroy();
+        return redirect()->route('carts.index');
+        
     }
 }
