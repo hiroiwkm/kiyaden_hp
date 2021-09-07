@@ -23,7 +23,7 @@
                         </span>
                     </div>
                     <div class="collapse show userName">
-                        <h1 class="samazon-edit-user-info-value">{{ $user->name }}</h1>
+                        <h4 class="samazon-edit-user-info-value">{{ $user->name }}</h4>
                     </div>
                     <div class="collapse editUserName">
                         <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ $user->name }}" required autocomplete="name" autofocus placeholder="侍 太郎">
@@ -50,7 +50,7 @@
                         </span>
                     </div>
                     <div class="collapse show userMail">
-                        <h1 class="samazon-edit-user-info-value">{{ $user->email }}</h1>
+                        <h4 class="samazon-edit-user-info-value">{{ $user->email }}</h4>
                     </div>
                     <div class="collapse editUserMail">
                         <input id="email" type="text" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ $user->email }}" required autocomplete="email" autofocus placeholder="samurai@samurai.com">
@@ -77,10 +77,10 @@
                         </span>
                     </div>
                     <div class="collapse show userPhone">
-                        <h1 class="samazon-edit-user-info-value">{{ $user->phone }}</h1>
+                        <h4 class="samazon-edit-user-info-value">{{ $user->tel_number }}</h4>
                     </div>
                     <div class="collapse editUserPhone">
-                        <input id="phone" type="text" class="form-control @error('phone') is-invalid @enderror" name="phone" value="{{ $user->phone }}" required autocomplete="phone" autofocus placeholder="XXX-XXXX-XXXX">
+                        <input id="phone" type="text" class="form-control @error('tel_number') is-invalid @enderror" name="tel_number" value="{{ $user->tel_number }}" required autocomplete="tel_number" autofocus placeholder="XXX-XXXX-XXXX">
 
                         <button type="submit" class="btn samazon-submit-button mt-3 w-25">
                             保存
