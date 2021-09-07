@@ -10,7 +10,12 @@ class UserController extends Controller
     public function mypage()
     {
         $user = Auth::user();
-        return view('users.maypage', compact('user'));
+        return view('users.mypage', compact('user'));
+    }
+
+    public function edit(){
+        $user = Auth::user();
+        return view('user.edit', compact('user'));
     }
 
 
