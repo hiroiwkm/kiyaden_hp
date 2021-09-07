@@ -10,10 +10,10 @@ class UserController extends Controller
     public function mypage()
     {
         $user = Auth::user();
-        return view('user.maypage', compact('user'));
+        return view('users.maypage', compact('user'));
     }
 
-    
+
 
     public function register_card(Request $request)
     {
@@ -27,7 +27,7 @@ class UserController extends Controller
 
         if ($user->token != "") {
             $result = \Payjp\Customer::retrieve($user->token)->cards->all(array("limit"=>1))->data[0];
-            
+        }
     }
 
 }

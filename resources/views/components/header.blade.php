@@ -15,8 +15,10 @@
                     </ul>
                         @if(Auth::check())
                         <span class="my-navbar-item text-white">ようこそ, {{ Auth::user()->name }}さん</span>
+                        <a class="nav-link text-white" href="{{ route('users.mypage') }}">マイページ</a>
                         <a class="nav-link text-white" href="/cart"><i class="fa fa-cart-arrow-down fa-lg"></i></a>
                         <a class="nav-link text-white" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+
                         ログアウト
                         </a>
                         <form id="logout-form" action="{{ route('logout')}}" method="POST" style="display: none;"></form>
@@ -24,7 +26,7 @@
                         @else
                         <button type="button" class="btn btn-outline-light ml-5"><a class="text-white" href="/register"><i class="fa fa-user-plus fa-lg"></i>新規登録</a></button>
                         <button type="button" class="btn btn-outline-light ml-2"><a class="text-white" href="/login"><i class="fa fa-sign-in fa-lg"></i>ログイン</a></button>
-                        <a class="nav-link text-white" href="{{ route('carts.index') }}"><i class="fa fa-cart-arrow-down fa-lg"></i>カート</a>
+                        <a class="nav-link text-white" href="#"><i class="fa fa-cart-arrow-down fa-lg"></i>カート</a>
                         @endif
               </div>
           </div>
