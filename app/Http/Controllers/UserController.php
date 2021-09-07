@@ -15,7 +15,20 @@ class UserController extends Controller
 
     public function edit(){
         $user = Auth::user();
-        return view('user.edit', compact('user'));
+        return view('users.edit', compact('user'));
+    }
+
+    public function edit_address(Request $request){
+        $user = Auth::user();
+        $user->name = $request->input('name') ? $request->input('name') : $user->name;
+        $user->email = $request->input('email') ? $request->input('email') : $user->email;
+        $user->postal_code = $request->input('postal_code') ? $request->input('postal_code') : $user->postal_code;
+        $user->address = $request->input('address') ? $request->input('address') : $user->address;
+        $user->phone = $request->input('phone') ? $request->input('phone') : $user->phone;
+        $user->update();
+
+        return redirect()->route('mypage');
+
     }
 
 
