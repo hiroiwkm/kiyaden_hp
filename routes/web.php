@@ -27,7 +27,8 @@ Route::post('carts', 'CartController@store')->name('carts.store');
 Route::put('carts', 'CartController@update')->name('carts.update');
 Route::delete('carts', 'CartController@destroy')->name('carts.destroy');
 
-Route::get('users/maypage', 'UserController@mypage')->name('users.mypage');
+Route::get('users/mypage', 'UserController@mypage')->name('mypage');
+Route::get('users/mypage/edit', 'UserController@edit')->name('mypage.edit');
 
 Route::get('users/register_card', 'UserController@register_card')->name('users.register_card');
 
