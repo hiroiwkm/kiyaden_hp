@@ -22,7 +22,7 @@ class CartController extends Controller
         foreach ($cart as $c) {
             $total += $c->qty * $c->price;
         }
-        
+                
         return view('carts.index', compact('cart', 'total'));
     }
 
@@ -94,7 +94,11 @@ class CartController extends Controller
         } else {
             Cart::instance(Auth::user()->id)->update($request->input('id'), $request->input('qty'));
         }
-        return redirect()->route('carts.index');
+
+        
+        // return redirect()->route('carts.index');
+        $test = $request->input('id');
+        return view('carts.index', compact('test'));
     }
 
     /**

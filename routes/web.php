@@ -33,7 +33,7 @@ Route::get('users/mypage/address/edit', 'UserController@edit_address')->name('my
 Route::put('users/mypage', 'UserController@update')->name('mypage.update');
 
 Route::get('users/register_card', 'UserController@register_card')->name('mypage.register_card');
-
+Route::post('users/mypage/token', 'UserController@token')->name('mypage.token');
 
 
 // Route::get('/cart', 'CartController@ses_get');

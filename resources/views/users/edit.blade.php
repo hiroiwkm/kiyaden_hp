@@ -26,7 +26,7 @@
                         <h4 class="samazon-edit-user-info-value">{{ $user->name }}</h4>
                     </div>
                     <div class="collapse editUserName">
-                        <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ $user->name }}" required autocomplete="name" autofocus placeholder="侍 太郎">
+                        <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ $user->name }}" required autocomplete="name" autofocus placeholder="×× ××">
 
                         <button type="submit" class="btn samazon-submit-button mt-3 w-25">
                             保存
@@ -53,7 +53,7 @@
                         <h4 class="samazon-edit-user-info-value">{{ $user->email }}</h4>
                     </div>
                     <div class="collapse editUserMail">
-                        <input id="email" type="text" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ $user->email }}" required autocomplete="email" autofocus placeholder="samurai@samurai.com">
+                        <input id="email" type="text" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ $user->email }}" required autocomplete="email" autofocus placeholder="××××××××@×××.××">
 
                         <button type="submit" class="btn samazon-submit-button mt-3 w-25">
                             保存

@@ -18,7 +18,7 @@
                     <label for="name" class="col-md-5 col-form-label text-md-left">氏名<span class="ml-1 samazon-require-input-label"><span class="samazon-require-input-label-text">必須</span></span></label>
 
                     <div class="col-md-7">
-                        <input id="name" type="text" class="form-control @error('name') is-invalid @enderror samazon-login-input" name="name" value="{{ $user->name }}" required autocomplete="name" autofocus placeholder="侍 太郎">
+                        <input id="name" type="text" class="form-control @error('name') is-invalid @enderror samazon-login-input" name="name" value="{{ $user->name }}" required autocomplete="name" autofocus placeholder="××　××">
 
                         @error('name')
                         <span class="invalid-feedback" role="alert">
@@ -32,7 +32,7 @@
                     <label for="password" class="col-md-5 col-form-label text-md-left">郵便番号<span class="ml-1 samazon-require-input-label"><span class="samazon-require-input-label-text">必須</span></span></label>
 
                     <div class="col-md-7">
-                        <input type="text" class="form-control @error('postal_code') is-invalid @enderror samazon-login-input" name="postal_code" value="{{ $user->postal_code }}" required placeholder="150-0043">
+                        <input type="text" class="form-control @error('postal_code') is-invalid @enderror samazon-login-input" name="postal_code" value="{{ $user->postal_code }}" required placeholder="×××-××××">
                     </div>
                 </div>
 
@@ -40,7 +40,7 @@
                     <label for="password" class="col-md-5 col-form-label text-md-left">住所<span class="ml-1 samazon-require-input-label"><span class="samazon-require-input-label-text">必須</span></span></label>
 
                     <div class="col-md-7">
-                        <input type="text" class="form-control @error('address') is-invalid @enderror samazon-login-input" name="address" value="{{ $user->address }}" required placeholder="東京都渋谷区道玄坂２丁目１１−１">
+                        <input type="text" class="form-control @error('address') is-invalid @enderror samazon-login-input" name="address" value="{{ $user->address }}" required placeholder="住所・アパート">
                     </div>
                 </div>
 
@@ -48,7 +48,7 @@
                     <label for="password" class="col-md-5 col-form-label text-md-left">電話番号<span class="ml-1 samazon-require-input-label"><span class="samazon-require-input-label-text">必須</span></span></label>
 
                     <div class="col-md-7">
-                        <input type="text" class="form-control @error('phone') is-invalid @enderror samazon-login-input" name="phone" value="{{ $user->phone }}" required placeholder="03-5790-9039">
+                        <input type="text" class="form-control @error('phone') is-invalid @enderror samazon-login-input" name="phone" value="{{ $user->phone }}" required placeholder="×××-×××××-××××">
                     </div>
                 </div>
 
@@ -56,7 +56,7 @@
                     <label for="email" class="col-md-5 col-form-label text-md-left">メールアドレス<span class="ml-1 samazon-require-input-label"><span class="samazon-require-input-label-text">必須</span></span></label>
 
                     <div class="col-md-7">
-                        <input id="email" type="email" class="form-control @error('email') is-invalid @enderror samazon-login-input" name="email" value="{{ $user->email }}" required autocomplete="email" placeholder="samurai@samurai.com">
+                        <input id="email" type="email" class="form-control @error('email') is-invalid @enderror samazon-login-input" name="email" value="{{ $user->email }}" required autocomplete="email" placeholder="×××××@××××.××">
 
                         @error('email')
                         <span class="invalid-feedback" role="alert">
