@@ -19,22 +19,19 @@
         <a class="nav-link  text-white" href="#page-top">Top</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link text-white" href="#">商品一覧</a>
+        <a class="nav-link text-white" href="/products">商品一覧</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link text-white" href="#">お取り寄せ</a>
+        <a class="nav-link text-white" href="/#news">お知らせ</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link text-white" href="#news">お知らせ</a>
+        <a class="nav-link text-white" href="/#about">木屋傳について</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link text-white" href="#about">木屋傳について</a>
+        <a class="nav-link text-white" href="/#infomation">店舗情報</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link text-white" href="#infomation">店舗情報</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link text-white" href="#contact">お問い合わせ</a>
+        <a class="nav-link text-white" href="/#contact">お問い合わせ</a>
       </li>
     </ul>
       <!-- Footer Social Icons-->

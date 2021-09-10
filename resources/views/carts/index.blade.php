@@ -56,7 +56,7 @@
             <div class="float-right text-right">
               <p>( + 送料：330円 )</p>
                 <h4>合計金額:</h4>
-                <h2>{{$product->price + 330}}円
+                <h2>{{$total + 330}}円
                 </h2>
             </div>
 

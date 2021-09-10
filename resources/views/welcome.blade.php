@@ -5,7 +5,7 @@
       <!--メインビジュアル-->
         <div class="jumbotron-fluid pb-5" style="margin-top:91px;">
           <!--カルーセル-->
-          <div id="carouselControls" class="carousel slide" data-ride="carousel">
+          <div id="carouselControls" class="carousel slide carousel-fade" data-ride="carousel" data-interval="3000">
             <!--インジケーター-->
             <ol class="carousel-indicators">
               <li data-target="#carouselControls" data-slide-to="0" active></li>
@@ -43,41 +43,42 @@
 
       <!--Recomend section-->
       <section class="page-section recomend py-5" id="recomend">
-        <div class="container">
             <!-- Recomend Section Heading-->
             <div class="text-center">
-             <img class="page-section-heading py-5" src="img\title_recomend.png"> 
-            </div>           
-            <!-- Portfolio Grid Items-->
-            <div class="row justify-content-center">
-                <!-- Portfolio Item 1-->
-                <div class="col-md-12 col-lg-5 mb-5">
-                    <div class="portfolio-item mx-auto" data-bs-toggle="modal" data-bs-target="#portfolioModal1">
-                    <a href="/items"><img class="img-fluid" src="img\recomend1.png" alt="..." /></a>
-                    </div>
-                </div>
-                <!-- Portfolio Item 2-->
-                <div class="col-md-12 col-lg-5 mb-5">
-                    <div class="portfolio-item mx-auto" data-bs-toggle="modal" data-bs-target="#portfolioModal2">
-                        <a href="/items"><img class="img-fluid" src="img\recomend2.png" alt="..." /></a>
-                    </div>
-                </div>
-
-                <!-- Portfolio Item 3-->
-                <div class="col-md-12 col-lg-5 mb-5 mb-lg-0">
-                    <div class="portfolio-item mx-auto" data-bs-toggle="modal" data-bs-target="#portfolioModal4">
-                    <a href="/items"><img class="img-fluid" src="img\recomend3.png" alt="..." /></a>
-                    </div>
-                </div>
-                <!-- Portfolio Item 4-->
-                <div class="col-md-12 col-lg-5 mb-5 mb-md-0">
-                    <div class="portfolio-item mx-auto" data-bs-toggle="modal" data-bs-target="#portfolioModal5">
-                    <a href="/items"><img class="img-fluid" src="img\recomend4.png" alt="..." /></a>
-                    </div>
-                </div>
-                <div class="col-12 text-center py-5"><a class="btn btn-custom shadow btn-lg bg-warning text-white" href="/items">商品一覧へ→</a></div>
+            <a href="/products?category=1"><img class="img-fluid" src="img\title_recomend.png" alt="..." /></a>
             </div>
+            <div class="row justify-content-around pt-5 px-5"> 
+              <!-- Recomend Item 1-->
+              <div class="" style="max-width:25rem">
+              <a href="/products?category=1"><img src="img\recomend1.png"  alt="..."></a>
+                  <h4 class="card-title text-center">季節限定</h4>
+              </div>
+              <!-- Recomend Item 1-->
+              <div class="" style="max-width:25rem">
+                      <a href="/products?category=2"><img class="img-fluid" src="img\recomend2.png" alt="..." /></a>
+                  <h4 class="card-title text-center">人気商品</h4>
+              </div>
+              <!-- Recomend Item 1-->
+              <div class="" style="max-width:25rem">
+              <a href="/products?category=3"><img class="img-fluid" src="img\recomend3.png" alt="..." /></a>
+                  <h4 class="card-title text-center">ロールケーキ</h4>
+              </div>
+              <!-- Recomend Item 1-->
+              <div class="" style="max-width:25rem">
+              <a href="/products?category=4"><img class="img-fluid" src="img\recomend4.png" alt="..." /></a>
+                  <h4 class="card-title text-center">焼き菓子</h4>
+              </div>
+              <!-- Recomend Item 1-->
+              <div class="" style="max-width:25rem">
+              <a href="/products?category=5"><img class="img-fluid" src="img\recomend5.png" alt="..." /></a>
+                  <h4 class="card-title text-center">慶弔菓子</h4>
+              </div>
         </div>
+
+            <!-- Recomend Items-->
+            <div class="row justify-content">
+                <div class="col-12 text-center py-5"><a class="btn btn-custom shadow btn-lg bg-warning text-white" href="/products">すべての商品をみる→</a></div>
+            </div>
     </section>
 
 
