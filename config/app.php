@@ -40,6 +40,7 @@ return [
     */
 
     'debug' => env('APP_DEBUG', false),
+    'payjp_pub_key' => env('PAYJP_PUBLIC_KEY', ""),
 
     /*
     |--------------------------------------------------------------------------

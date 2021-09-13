@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use Gloudemans\Shoppingcart\Facades\Cart;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use App\Product;
+
 
 
 class CartController extends Controller
@@ -44,6 +46,7 @@ class CartController extends Controller
      */
     public function store(Request $request)
     {
+        $product_img = Product::where('id', $request->id)->pluck('img_url');
         Cart::instance(Auth::user()->id)->add(
             [
             'id' => $request->_token, 
@@ -51,7 +54,7 @@ class CartController extends Controller
             'qty' => $request->qty,
             'price' => $request->price, 
             'weight' => $request->weight,
-            'options'=> ['product_id'=> $request->id]
+            'options'=> ['product_id'=> $request->id, 'img_url'=>$product_img]
             ] 
         );
 
@@ -89,16 +92,18 @@ class CartController extends Controller
      */
     public function update(Request $request)
     {
-        if( $request->input('delete')){
-            Cart::instance(Auth::user()->id)->remove($request->input('id'));
-        } else {
-            Cart::instance(Auth::user()->id)->update($request->input('id'), $request->input('qty'));
-        }
+        $test_id = $request->cookie('XSRF-TOKEN');
 
+        return view('carts', ['test_id' =>$test_id]);
+
+        // if( $request->delete = NULL){
+        //     Cart::instance(Auth::user()->id)->update($request->id, $request->qty);
+        // } else {
+        //     Cart::instance(Auth::user()->id)->remove($request->id);
+        // }
         
         // return redirect()->route('carts.index');
-        $test = $request->input('id');
-        return view('carts.index', compact('test'));
+        
     }
 
     /**
@@ -116,27 +121,27 @@ class CartController extends Controller
         Cart::instance(Auth::user()->id)->store;
         DB::table('shoppingcart')->where('instance', Auth::user()->id)->where('number', null)->update(['number' => $count, 'buy_flag' => true]);
 
-        //購入時に決済できるように
-        $pay_jp_secret = env('PAYJP_SECRET_KEY');
-       \Payjp\Payjp::setApiKey($pay_jp_secret);
+    //     //購入時に決済できるように
+    //     $pay_jp_secret = env('PAYJP_SECRET_KEY');
+    //    \Payjp\Payjp::setApiKey($pay_jp_secret);
 
-        $user = Auth::user();
+    //     $user = Auth::user();
 
-        $cart = Cart::instance(Auth::user()->id)->content();
-        $price_total = 0;
-        foreach ($cart as $c) {
-            $price_total += $c->qty * $c->price;
-        }
+    //     $cart = Cart::instance(Auth::user()->id)->content();
+    //     $price_total = 0;
+    //     foreach ($cart as $c) {
+    //         $price_total += $c->qty * $c->price;
+    //     }
 
-       $res = \Payjp\Charge::create(
-          [
-               "customer" => $user->token,
-               "amount" => $price_total,
-               "currency" => 'jpy'
-           ]
-       );
+    //    $res = \Payjp\Charge::create(
+    //       [
+    //            "customer" => $user->token,
+    //            "amount" => $price_total,
+    //            "currency" => 'jpy'
+    //        ]
+    //    );
 
-        Cart::instance(Auth::user()->id)->destroy();
+       Cart::instance(Auth::user()->id)->destroy();
         return redirect()->route('carts.index');
         
     }

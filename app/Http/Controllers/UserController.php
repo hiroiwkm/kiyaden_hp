@@ -64,6 +64,14 @@ class UserController extends Controller
                     'exp_year' => $result["exp_year"],
                     'last4' => $result["last4"] 
                 ];
+                }else{
+                    $card = [
+                        'brand' => NULL,
+                        'exp_month' => NULL,
+                        'exp_year' => NULL,
+                        'last4' => NULL
+                    ];
+    
                 }
     
            return view('users.register_card', compact('card', 'count'));
@@ -84,15 +92,18 @@ class UserController extends Controller
                $cu->cards->create(array(
                   "card" => request('payjp-token')
                ));
+               return redirect()->route('home');
            } else {
                $cu = \Payjp\Customer::create(array(
                    "card" => request('payjp-token')
                ));
                $user->token = $cu->id;
                $user->update();
+               return redirect()->route('mypage');
+
            }
     
-           return redirect()->route('mypage');
+        //    return redirect()->route('mypage');
        }
     }
 
