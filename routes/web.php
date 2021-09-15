@@ -26,7 +26,7 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 Route::get('carts', 'CartController@index')->name('carts.index');
 Route::post('carts', 'CartController@store')->name('carts.store');
-Route::put('carts', 'CartController@update')->name('carts.update');
+Route::put('/carts/update', 'CartController@update')->name('carts.update');
 Route::delete('carts', 'CartController@destroy')->name('carts.destroy');
 
 Route::get('users/mypage', 'UserController@mypage')->name('mypage');
@@ -37,8 +37,8 @@ Route::put('users/mypage', 'UserController@update')->name('mypage.update');
 Route::get('users/register_card', 'UserControllser@register_card')->name('mypage.register_card');
 Route::post('users/mypage/token', 'UserController@token')->name('mypage.token');
 
-Route::post('contacts', 'ContactController@confirm')->name('contact_confirm');
-// Route::post('contacts', 'ContactController@send')->name('contact_send');
+Route::post('contacts', 'ContactController@confirm')->name('contact.confirm');
+// Route::post('contacts', 'ContactController@send')->name('contact.send');
 
 
 // Route::get('/cart', 'CartController@ses_get');

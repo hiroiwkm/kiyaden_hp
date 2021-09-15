@@ -92,17 +92,13 @@ class CartController extends Controller
      */
     public function update(Request $request)
     {
-        $test_id = $request->cookie('XSRF-TOKEN');
-
-        return view('carts', ['test_id' =>$test_id]);
-
-        // if( $request->delete = NULL){
-        //     Cart::instance(Auth::user()->id)->update($request->id, $request->qty);
-        // } else {
-        //     Cart::instance(Auth::user()->id)->remove($request->id);
-        // }
+        if( $request->action = "update"){
+            Cart::instance(Auth::user()->id)->update($request->id, $request->qty);
+        } else {
+            Cart::instance(Auth::user()->id)->remove($request->id);
+        }
         
-        // return redirect()->route('carts.index');
+        return redirect()->route('carts.index');
         
     }
 

@@ -204,7 +204,7 @@
           </div>
           <div class="row gx-4 gx-lg-5 justify-content-center">
               <div class="col-lg-6">
-                  <form id="contactForm" action="/contacts/confirm" method="POST">
+                  <form id="contactForm" action="{{ route('contact.confirm') }}" method="POST">
                     @csrf
                       <!-- Name input-->
                       <div class="form-floating mb-3">
