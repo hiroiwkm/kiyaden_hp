@@ -17,20 +17,22 @@
                             <div class="bg-transparent">
                                 <form method="POST" action="{{ route('carts.store') }}">
                                 @csrf
-                                <input type="hidden" name="id" value="{{ $product->id }}">
-                                <input type="hidden" name="name" value="{{ $product->name }}">
-                                <input type="hidden" name="price" value="{{ $product->price }}">
-                                <input type="hidden" name="weight" value="1">
-                                <input type="hidden" name="carriage" value=330>
-                                <input class="form-control form-control-lg text-center mr-4" style="width:70px;" type="number" id="quantity" name="qty" min="1" value="1">
-                                <input type="hidden" name="options" value="{{ $product->id }}">
-                                <input class="btn btn-outline-dark mt-auto"　type="submit" value="カートに追加">
+                                    <input type="hidden" name="id" value="{{ $product->id }}">
+                                    <input type="hidden" name="name" value="{{ $product->name }}">
+                                    <input type="hidden" name="price" value="{{ $product->price }}">
+                                    <input type="hidden" name="weight" value="1">
+                                    <input type="hidden" name="carriage" value=330>
+                                    <input class="form-control form-control-lg text-center" style="width:70px;" type="number" id="quantity" name="qty" min="1" value="1">
+                                    <input type="hidden" name="options" value="{{ $product->id }}">
+                                    <input class="btn btn-outline-dark mt-3"　type="submit" value="カートに追加">
+                                </div>
                                 </form>   
                             </div> 
                             @else
                             <div class="bg-transparent">
-                                <input class="form-control form-control-lg text-center mr-4" style="width:70px;" type="number" id="quantity" name="qty" min="1" value="1">
-                                <a href="/login"><input class="btn btn-outline-dark mt-auto"　type="submit" value="カートに追加"></a>                          </div>
+                                <input class="form-control form-control-lg text-center" style="width:70px;" type="number" id="quantity" name="qty" min="1" value="1">
+                                <a href="/login"><input class="btn btn-outline-dark mt-3"　type="submit" value="カートに追加"></a>                         
+                             </div>
                             @endif
                         @endif
                     </div>

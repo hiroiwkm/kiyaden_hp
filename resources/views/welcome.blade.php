@@ -1,9 +1,10 @@
 @extends('layouts.app')
 
 @section('content')
-
+<div class="container-fluid p-0">
+<div class="p-0" style="margin-top:76.22px;">
       <!--メインビジュアル-->
-        <div class="jumbotron-fluid pb-5" style="margin-top:91px;">
+        <div class="jumbotron-fluid pb-5">
           <!--カルーセル-->
           <div id="carouselControls" class="carousel slide carousel-fade" data-ride="carousel" data-interval="3000">
             <!--インジケーター-->
@@ -50,34 +51,34 @@
             <div class="row justify-content-around pt-5 px-5"> 
               <!-- Recomend Item 1-->
               <div class="" style="max-width:25rem">
-              <a href="/products?category=1"><img src="img\recomend1.png"  alt="..."></a>
+              <a href="/products?category=1"><img class="rounded shadow my-3" src="img\recomend1.png"  alt="..."></a>
                   <h4 class="card-title text-center">季節限定</h4>
               </div>
               <!-- Recomend Item 1-->
               <div class="" style="max-width:25rem">
-                      <a href="/products?category=2"><img class="img-fluid" src="img\recomend2.png" alt="..." /></a>
+                      <a href="/products?category=2"><img class="rounded shadow my-3" src="img\recomend2.png" alt="..." /></a>
                   <h4 class="card-title text-center">人気商品</h4>
               </div>
               <!-- Recomend Item 1-->
               <div class="" style="max-width:25rem">
-              <a href="/products?category=3"><img class="img-fluid" src="img\recomend3.png" alt="..." /></a>
+              <a href="/products?category=3"><img class="rounded shadow my-3" src="img\recomend3.png" alt="..." /></a>
                   <h4 class="card-title text-center">ロールケーキ</h4>
               </div>
               <!-- Recomend Item 1-->
               <div class="" style="max-width:25rem">
-              <a href="/products?category=4"><img class="img-fluid" src="img\recomend4.png" alt="..." /></a>
+              <a href="/products?category=4"><img class="rounded shadow my-3" src="img\recomend4.png" alt="..." /></a>
                   <h4 class="card-title text-center">焼き菓子</h4>
               </div>
               <!-- Recomend Item 1-->
               <div class="" style="max-width:25rem">
-              <a href="/products?category=5"><img class="img-fluid" src="img\recomend5.png" alt="..." /></a>
+              <a href="/products?category=5"><img class="rounded shadow my-3" src="img\recomend5.png" alt="..." /></a>
                   <h4 class="card-title text-center">慶弔菓子</h4>
               </div>
         </div>
 
             <!-- Recomend Items-->
             <div class="row justify-content">
-                <div class="col-12 text-center py-5"><a class="btn btn-custom shadow btn-lg bg-warning text-white" href="/products">すべての商品をみる→</a></div>
+                <div class="col-12 text-center py-5"><a class="btn btn-custom shadow btn-lg bg-warning text-dark" href="/products">すべての商品をみる→</a></div>
             </div>
     </section>
 
@@ -129,14 +130,14 @@
           
           <!-- About Section Content-->
           <div class="row justify-content-center">
-            <img class="col-lg-5 img-fluid w-25" src="img\shop.jpg">
-            <div class="col-lg-4 me-auto p-5">
+            <img class="col-lg-5 img-fluid" src="img\shop.jpg">
+            <div class="col-lg-4 me-auto p-4">
               <p class="lead">テキストテキストテキストテキスト</p>
               <p class="">テキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト</p>             
             </div>
           </div>
           <div class="row py-3 justify-content-center">
-            <div class="col-lg-6 me-auto py-5 px-3">
+            <div class="col-lg-6 me-auto p-4">
               <p class="lead">テキストテキストテキストテキスト</p>
               <p class="">テキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト</p>             
             </div>
@@ -152,15 +153,15 @@
             </div>           
             <div class="row justify-content-center">
             <!-- Google Map -->
-            <div class="col-md-5">
-              <section id="access">
-                <div class="embed-responsive embed-responsive-4by3">
+            <div class="col-md-5 pb-4">
+              <section id="access" class="shadow">
+                <div class="embed-responsive embed-responsive-4by3 rounded">
                 <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3248.331139532009!2d135.73907831542905!3d35.496089347710516!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x6001d0656bc4aecf%3A0xe214cfd42821c973!2z6I-T5a2Q5Y-4IOacqOWxi-WCsw!5e0!3m2!1sja!2sus!4v1629345787905!5m2!1sja!2sus" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
                 </div>
               </section>
             </div>
             <!-- Infomation Tble-->
-            <div class="col-md-5 pl-5">
+            <div class="col-md-5">
               <section id="shop">
                 <h4 class="mb-3">木屋傳(きやでん)</h4>
                 <table class="table">
@@ -222,7 +223,7 @@
                      <!-- Message input-->
                       <div class="form-floating mb-3">
                         <label for="message">お問い合わせ内容</label>
-                        <textarea class="form-control" type="text" name="message" value="{{ old('message') }}" placeholder="Enter your message here..." style="height: 10rem" data-sb-validations="required"></textarea>
+                        <textarea class="form-control" type="text" name="message" value="{{ old('message') }}" placeholder="Enter your message here..." style="height: 10rem" data-sb-validations="required">{{ old('message') }}</textarea>
                           <div class="invalid-feedback" data-sb-feedback="message:required">A message is required.</div>
                       </div>
                       <!-- Submit success message-->
@@ -243,7 +244,7 @@
                       <!-- an error submitting the form-->
                       <div class="d-none" id="submitErrorMessage"><div class="text-center text-danger mb-3">Error sending message!</div></div>
                       <!-- Submit Button-->
-                      <div class="d-grid"><button class="btn btn-primary btn-xl disabled" id="submitButton" type="submit">確認画面へ</button></div>
+                      <div class="d-grid"><button class="btn btn-success btn-xl float-right" id="submitButton" type="submit">確認画面へ</button></div>
                   </form>
               </div>
           </div>
@@ -251,7 +252,8 @@
   </section>
                                 
     <!--/メイン-->
-
+ </div>
+</div>
 @endsection
 
 @section('news')

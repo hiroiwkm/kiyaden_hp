@@ -17,7 +17,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @if(!isset($cart[0]))
+                    @if($total == 0)
                     <tr><td class="text-center">カートは空です。</td></tr>
                     @else
                     @foreach ($cart as $product)

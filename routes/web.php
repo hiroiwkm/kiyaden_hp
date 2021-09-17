@@ -13,7 +13,8 @@
 
 use App\Http\Controllers\Controller;
 
-Route::get('/', 'HelloController@index');
+Route::get('/', 'HelloController@index')->name('welcome');
+
 
 Route::resource('/products', 'ProductController');
 
@@ -23,6 +24,7 @@ Route::resource('news', 'NewsController');
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+
 
 Route::get('carts', 'CartController@index')->name('carts.index');
 Route::post('carts', 'CartController@store')->name('carts.store');
@@ -37,9 +39,10 @@ Route::put('users/mypage', 'UserController@update')->name('mypage.update');
 Route::get('users/register_card', 'UserControllser@register_card')->name('mypage.register_card');
 Route::post('users/mypage/token', 'UserController@token')->name('mypage.token');
 
-Route::post('contacts', 'ContactController@confirm')->name('contact.confirm');
-// Route::post('contacts', 'ContactController@send')->name('contact.send');
+//お問い合わせ確認画面へ
+Route::post('/contacts/confirm', 'ContactController@confirm')->name('contact.confirm');
+// お問い合わせ完了画面へ
+Route::post('/contacts/thanks',  'ContactController@send')->name('contact.send');
+Route::get('/contacts/thanks', 'ContactController@index')->name('contact.thanks');
 
 
-// Route::get('/cart', 'CartController@ses_get');
-// Route::post('/cart', 'CartController@ses_put')->name('addCart');

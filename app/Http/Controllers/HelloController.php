@@ -12,18 +12,5 @@ class HelloController extends Controller
 
         $news = News::paginate(5);
         return view('welcome',['news' => $news]);
-
     }
 }
-    // public function json(){
-    //     $news = News::paginate(5);
-    //     return response()->json(['news' => $news]);
-    // }
-
-    // public function ajax(){
-    //     $page = Input::get('page');
-    //     if(empty($page)) $page = 1;
-
-    //     return view('users.ajax')->with('page',$page);
-    // }
-

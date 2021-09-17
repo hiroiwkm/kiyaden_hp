@@ -117,27 +117,29 @@ class CartController extends Controller
         Cart::instance(Auth::user()->id)->store;
         DB::table('shoppingcart')->where('instance', Auth::user()->id)->where('number', null)->update(['number' => $count, 'buy_flag' => true]);
 
-    //     //購入時に決済できるように
-    //     $pay_jp_secret = env('PAYJP_SECRET_KEY');
-    //    \Payjp\Payjp::setApiKey($pay_jp_secret);
+        //購入時に決済できるように
+        $pay_jp_secret = env('PAYJP_SECRET_KEY');
+        \Payjp\Payjp::setApiKey($pay_jp_secret);
+        \Payjp\Payjp::setApiKey("sk_test_459778734e47564a1215d334");
 
-    //     $user = Auth::user();
+        $user = Auth::user();
 
-    //     $cart = Cart::instance(Auth::user()->id)->content();
-    //     $price_total = 0;
-    //     foreach ($cart as $c) {
-    //         $price_total += $c->qty * $c->price;
-    //     }
+        $cart = Cart::instance(Auth::user()->id)->content();
+        $price_total = 0;
+        foreach ($cart as $c) {
+            $price_total += $c->qty * $c->price;
+        }
 
-    //    $res = \Payjp\Charge::create(
-    //       [
-    //            "customer" => $user->token,
-    //            "amount" => $price_total,
-    //            "currency" => 'jpy'
-    //        ]
-    //    );
+        $res = \Payjp\Charge::create(
+          [
+               "customer" => $user->token,
+               "amount" => $price_total,
+               "currency" => 'jpy'
+           ]
+       );
 
-       Cart::instance(Auth::user()->id)->destroy();
+       //カート内を空にする
+        Cart::instance(Auth::user()->id)->destroy();
         return redirect()->route('carts.index');
         
     }
