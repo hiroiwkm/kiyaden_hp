@@ -2,20 +2,32 @@
 
 @section('content')
 <div class="container-fluid">
-      <div class="row" style="margin-top:76.22px;">
-        <!-- サイドメニュー -->
-        <div class="container" style="">
-        <div class="col-md-2 d-md-block bg-light border-right shadow p-0 fixed-top" style="top:66px;"> 
-         <ul class="list-group  height:100vh-73px;">
-              <button type="button" class="btn-block list-group-item list-group-item-action text-muted m-0 h5"><a href="{{ route('products.index', ['category' => null]) }}">すべての商品</a></button>
-              @foreach($categories as $category)
-              <button type="button" class="btn-block list-group-item list-group-item-action text-muted m-0 h5"><a href="{{ route('products.index', ['category' => $category->id]) }}">{{ $category->name }}</a></button>
-              @endforeach
-          </ul>
-         </div>
-        </div>
+      <div class="row" style="padding-top:66px;">
+       <!-- サイドバー -->
+        <nav class="navbar col-md-3 col-lg-2 d-md-block bg-light shadow">
+        <div  style="position: sticky; top: 66px; width: 100%;">
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#sidenavbarResponsive" aria-controls="#sidenavbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+          カテゴリ<i class="fa fa-angle-down p-3" aria-hidden="true"></i>
+         </button>
+            <!-- 折り畳み -->
+          <div class="collapse navbar-collapse" id="sidenavbarResponsive">
+            <ul class="navbar-nav flex-column">
+                <li class="nav-item">
+                  <a class="nav-link text-dark h5" href="{{ route('products.index', ['category' => null]) }}">すべての商品</a>
+                </li>
+                @foreach($categories as $category)
+                <li class="nav-item">
+                  <a class="nav-link text-dark h5" href="{{ route('products.index', ['category' => $category->id]) }}">{{ $category->name }}</a>
+                </li>
+                @endforeach
+            </ul>
+          </div>
+       </div>
+       </nav>
+
+
         <!-- 商品一覧 -->
-        <div class="col-md-9 ml-sm-auto col-lg-10">
+        <div class="col-md-9 ml-sm-auto col-lg-10 px-md-4">
           <div class="dflex justify-contnt-between flex-wrap flex-md-nowrap align-item-center py-4 border-bottom">
             <h2>
             @if(isset($selected_category->name))
@@ -26,7 +38,7 @@
             </h2>
           </div>
           <div class="container px-4 px-lg-5 mt-5">
-            <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-start">
+            <div class="row gx-4 gx-lg-5 row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-xl-4 justify-content-start">
               @foreach($products as $product)
               <div class="col mb-5">
               <div class="card h-100">
@@ -65,7 +77,7 @@
                @endforeach
             </div>
           </div>
-        </div>    
-      </div>
+        </div>   
+   </div> 
 </div>
 @endsection

@@ -50171,7 +50171,8 @@ window.Vue = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.common.
 Vue.component('example-component', __webpack_require__(/*! ./components/ExampleComponent.vue */ "./resources/js/components/ExampleComponent.vue")["default"]);
 Vue.component('my-component', __webpack_require__(/*! ./components/MyComponent.vue */ "./resources/js/components/MyComponent.vue")["default"]);
 Vue.component('mainvisual-component', __webpack_require__(/*! ./components/MainvisualComponent.vue */ "./resources/js/components/MainvisualComponent.vue")["default"]);
-Vue.component('news-component', __webpack_require__(/*! ./components/NewsComponent.vue */ "./resources/js/components/NewsComponent.vue")["default"]);
+Vue.component('news-component', __webpack_require__(/*! ./components/NewsComponent.vue */ "./resources/js/components/NewsComponent.vue")["default"]); //
+
 /**
  * Next, we will create a fresh Vue application instance and attach it to
  * the page. Then, you may begin adding components to this application

@@ -1,13 +1,12 @@
 @extends('layouts.app')
 
 @section('content')
-    <div id="wrapper">
-        <div class="col-md-12 ml-sm-auto col-lg-12 px-4 p-5"　style="margin-top:91px;">
-            <div class="row">
-               <div class="col-md-5">
-                    <img class="img-fluid" src="{{ asset($product->img_url) }}" alt="{{ $product->name }}" />
+        <div class="col-md-12 ml-sm-auto col-lg-12 px-4" style="margin-top:66px;">
+            <div class="row py-5">
+                <div class="col-md-5">
+                    <img class="img-fluid shadow" src="{{ asset($product->img_url) }}" alt="{{ $product->name }}" />
                 </div>
-                <div class="col-md-7">
+                <div class="col-md-7 pt-4">
                     <h3>{{ $product->name }}</h3>
                     <div class="py-3">
                         <h5 class="py-3">{{ $product->detail }}</h5>
@@ -25,7 +24,6 @@
                                     <input class="form-control form-control-lg text-center" style="width:70px;" type="number" id="quantity" name="qty" min="1" value="1">
                                     <input type="hidden" name="options" value="{{ $product->id }}">
                                     <input class="btn btn-outline-dark mt-3"　type="submit" value="カートに追加">
-                                </div>
                                 </form>   
                             </div> 
                             @else
@@ -39,5 +37,4 @@
                 </div>
             </div>
         </div>
-    </div>    
 @endsection

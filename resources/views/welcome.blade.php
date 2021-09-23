@@ -2,7 +2,7 @@
 
 @section('content')
 <div class="container-fluid p-0">
-<div class="p-0" style="margin-top:76.22px;">
+<div class="p-0" style="margin-top:66px;">
       <!--メインビジュアル-->
         <div class="jumbotron-fluid pb-5">
           <!--カルーセル-->

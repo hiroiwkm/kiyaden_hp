@@ -28,7 +28,7 @@
     body {
         font-family: 'Hina Mincho', serif;
     }
-    
+
   </style>
 </head>
 <body id="page-top">
@@ -37,7 +37,7 @@
         @endcomponent
 
         <main>
-            <div class="container-fruid h-100 p-0 d-flex flex-column">
+            <div class="container-fruid p-0 flex-column">
                 @yield('content')
             </div>
         </main>
