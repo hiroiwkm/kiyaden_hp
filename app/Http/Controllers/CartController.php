@@ -7,6 +7,10 @@ use Gloudemans\Shoppingcart\Facades\Cart;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use App\Product;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\CartSendmail;
+
+
 
 
 
@@ -19,6 +23,7 @@ class CartController extends Controller
      */
     public function index()
     {
+
         $cart = Cart::instance(Auth::user()->id)->content();
         $total = 0;
         foreach ($cart as $c) {
@@ -69,7 +74,9 @@ class CartController extends Controller
      */
     public function show($id)
     {
-        //
+        $cart = DB::table('shoppingcart')->where('instance', Auth::user()->id)->where('identifier', $count)->get();
+
+        return view('carts.show', compact('cart'));
     }
 
     /**
@@ -117,10 +124,10 @@ class CartController extends Controller
         Cart::instance(Auth::user()->id)->store;
         DB::table('shoppingcart')->where('instance', Auth::user()->id)->where('number', null)->update(['number' => $count, 'buy_flag' => true]);
 
+
         //購入時に決済できるように
-        $pay_jp_secret = env('PAYJP_SECRET_KEY');
+        $pay_jp_secret = "sk_test_459778734e47564a1215d334";
         \Payjp\Payjp::setApiKey($pay_jp_secret);
-        \Payjp\Payjp::setApiKey("sk_test_459778734e47564a1215d334");
 
         $user = Auth::user();
 
@@ -140,7 +147,14 @@ class CartController extends Controller
 
        //カート内を空にする
         Cart::instance(Auth::user()->id)->destroy();
-        return redirect()->route('carts.index');
-        
+
+        // //入力されたメールアドレスにメールを送信
+        Mail::to($user->email)->send(new CartSendmail($cart, $user, $price_total));
+        //送信完了ページのviewを表示
+        return view('carts.thanks',['cart' => $cart]);
+    }
+
+    public function purchase(Request $request){
+        return view('carts.thanks');
     }
 }

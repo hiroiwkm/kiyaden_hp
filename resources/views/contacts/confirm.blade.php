@@ -32,6 +32,5 @@
     </form>
     </div>
 </div>
-    <!-- <button class="btn btn-primary btn-xl disabled" id="submitButton" type="submit" name="action" value="back">修正する</button> -->
 
  @endsection

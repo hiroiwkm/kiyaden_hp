@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\User;
+use App\Product;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -48,7 +49,7 @@ class UserController extends Controller
        {
            $user = Auth::user();
     
-           $pay_jp_secret = env('PAYJP_SECRET_KEY');
+           $pay_jp_secret = "sk_test_459778734e47564a1215d334";
            \Payjp\Payjp::setApiKey($pay_jp_secret);
     
            $card = [];
@@ -79,31 +80,48 @@ class UserController extends Controller
     
        public function token(Request $request)
        {
-           $pay_jp_secret = env('PAYJP_SECRET_KEY');
-           \Payjp\Payjp::setApiKey($pay_jp_secret);
+            $pay_jp_secret = "sk_test_459778734e47564a1215d334";
+            \Payjp\Payjp::setApiKey($pay_jp_secret);
     
-           $user = Auth::user();
-           $customer = $user->token;
-    
+            $user = Auth::user();
+            $customer = $user->token;
+
            if ($customer != "") {
                $cu = \Payjp\Customer::retrieve($customer);
                $delete_card = $cu->cards->retrieve($cu->cards->data[0]["id"]);
                $delete_card->delete();
                $cu->cards->create(array(
-                  "card" => request('payjp-token')
+                  "card" => $request->get('payjp-token')
                ));
-               return redirect()->route('home');
+
            } else {
-               $cu = \Payjp\Customer::create(array(
-                   "card" => request('payjp-token')
-               ));
-               $user->token = $cu->id;
-               $user->update();
-               return redirect()->route('mypage');
+                $cu = \Payjp\Customer::create(array(
+                    "card" => $request->get('payjp-token')
+                ));
+                $user->token = $cu->id;
+                $user->update();
 
-           }
-    
-        //    return redirect()->route('mypage');
+                // return view('users.register_card', compact($user)); 
        }
+                return redirect()->route('mypage.register_card');
     }
+}
+    
+        //    if ($customer != "") {
+        //        $cu = \Payjp\Customer::retrieve($customer);
+        //        $delete_card = $cu->cards->retrieve($cu->cards->data[0]["id"]);
+        //        $delete_card->delete();
+        //        $cu->cards->create(array(
+        //           "card" => $request->get('payjp-token')
+        //        ));
 
+        //    } else {
+        //        $cu = \Payjp\Customer::create(array(
+        //            "card" => $request->get('payjp-token')
+        //        ));
+        //        $user->token = $cu->id;
+        //        $user->update();
+
+        //    }
+    
+        // return redirect()->route('mypage');

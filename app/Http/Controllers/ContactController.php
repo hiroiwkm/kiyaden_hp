@@ -25,17 +25,20 @@ class ContactController extends Controller
     }
 
     public function send(Request $request){
-        // $action = $request->action;
+        $action = $request->input('action');
         $inputs = [
             'name' => $request->name,
             'email' =>$request->email,
             'message' =>$request->message,
         ];
 
-        // if($action == 'submit'){
-            // Mail::to($inputs['email'])->send(new ContactSendmail($inputs));
+        if($action == 'submit'){
+            //入力されたメールアドレスにメールを送信
+             Mail::to($inputs['email'])->send(new ContactSendmail($inputs));
+            //再送信を防ぐためにトークンを再発行
+            $request->session()->regenerateToken();
+            //送信完了ページのviewを表示
             return view('contacts.thanks',['inputs' => $inputs]);
-            // }
         }
     }
-
+}

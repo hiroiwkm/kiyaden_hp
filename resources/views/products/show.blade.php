@@ -23,16 +23,17 @@
                                     <input type="hidden" name="carriage" value=330>
                                     <input class="form-control form-control-lg text-center" style="width:70px;" type="number" id="quantity" name="qty" min="1" value="1">
                                     <input type="hidden" name="options" value="{{ $product->id }}">
-                                    <input class="btn btn-outline-dark mt-3"　type="submit" value="カートに追加">
-                                </form>   
-                            </div> 
+                                    <button class="btn btn-outline-dark mt-3"　type="submit">カートに追加</button>
+                                </form>
                             @else
-                            <div class="bg-transparent">
-                                <input class="form-control form-control-lg text-center" style="width:70px;" type="number" id="quantity" name="qty" min="1" value="1">
-                                <a href="/login"><input class="btn btn-outline-dark mt-3"　type="submit" value="カートに追加"></a>                         
-                             </div>
+                                    <input class="form-control form-control-lg text-center" style="width:70px;" type="number" id="quantity" name="qty" min="1" value="1">
+                                    <a href="/login"><button class="btn btn-outline-dark mt-3"　type="submit">カートに追加</button></a>                         
+                            </div> 
                             @endif
                         @endif
+                        <div class="py-4">
+                        <a href="/products">←商品一覧へもどる</a>                            
+                        </div>
                     </div>
                 </div>
             </div>

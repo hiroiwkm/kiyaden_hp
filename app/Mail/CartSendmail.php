@@ -7,25 +7,20 @@ use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Contracts\Queue\ShouldQueue;
 
-class ContactSendmail extends Mailable
+class CartSendmail extends Mailable
 {
     use Queueable, SerializesModels;
-
-    private $name;
-    private $email;
-    private $message;
-
 
     /**
      * Create a new message instance.
      *
      * @return void
      */
-    public function __construct($inputs)
+    public function __construct($cart, $user, $price_total)
     {
-        $this->name = $inputs['name'];
-        $this->email = $inputs['email'];
-        $this->message = $inputs['message'];
+        $this->name = $user['name'];
+        $this->cart = $cart;
+        $this->price_total = $price_total;
     }
 
     /**
@@ -38,11 +33,12 @@ class ContactSendmail extends Mailable
         return $this
         ->from('example@example.com')
         ->subject('自動送信メール')
-        ->view('contacts.mail')
+        ->view('emails.cart_mail')
         ->with([
             'name' => $this->name,
-            'email' => $this->email,
-            'body' => $this->message,
+            'cart' => $this->cart,
+            'price_total' => $this->price_total
         ]);
+
     }
 }
