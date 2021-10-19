@@ -39,7 +39,7 @@
                   <div class="col-9 d-flex align-items-center ml-2 mt-3">
                        <div class="d-flex flex-column">
                            <label for="user-name">クレジットカードの登録</label>
-                           <p>クレジットカードの登録</p>
+                           <p>クレジットカードを登録・変更します</p>
                        </div>
                    </div>
                </div>
@@ -85,8 +85,8 @@
                     </div>
                     <div class="col-9 d-flex align-items-center ml-3 mt-3">
                         <div class="d-flex flex-column">
-                            <label for="user-name">お届け先の変更</label>
-                            <p>登録住所の変更</p>
+                            <label for="user-name">お届け先</label>
+                            <p>登録住所の変更をします</p>
                         </div>
                     </div>
                 </div>

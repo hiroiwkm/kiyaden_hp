@@ -32,7 +32,7 @@
                             @endif
                         @endif
                         <div class="py-4">
-                        <a href="/products">←商品一覧へもどる</a>                            
+                        <a href="/products">←お買い物を続ける</a>                            
                         </div>
                     </div>
                 </div>

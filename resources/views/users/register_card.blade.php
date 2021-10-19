@@ -39,24 +39,23 @@
     <main class="py-5 mb-5" style="margin-top:91px;">
 
         <div class="d-flex justify-content-center">
-            <div class="container w-50">
+            <div class="container">
                 <h3>登録済みのクレジットカード</h3>
                 <hr>
                 @if ($card["brand"] == NULL)
                 <h4 class="py-4">クレジットカードが登録されていません。</h4>
                 @else
-                <h4>カードブランド:{{ $card["brand"] }}</h4>
-                <p>有効期限: {{ $card["exp_year"] }}/{{ $card["exp_month"] }}</p>
-                <p>カード番号: ************{{ $card["last4"] }}</p>
-                <?php var_dump($card); ?>
+                <h5>カードブランド:{{ $card["brand"] }}</h6>
+                <p class="h5">有効期限: {{ $card["exp_year"] }}/{{ $card["exp_month"] }}</p>
+                <p class="h5">カード番号: ************{{ $card["last4"] }}</p>
                 @endif
 
-                <form action="/users/mypage/token" method="post">
+                <form class="py-2" action="/users/mypage/token" method="post">
                     @csrf
                     @if ($card["brand"] == NULL)
                     <script type="text/javascript" src="https://checkout.pay.jp/" class="payjp-button" data-key="pk_test_3e5014cb0e4f4594df1f362e" data-on-created="onCreated" data-text="カードを登録する" data-submit-text="カードを登録する"></script>
                     @else
-                    <script type="text/javascript" src="https://checkout.pay.jp/" class="payjp-button" data-key="pk_test_3e5014cb0e4f4594df1f362e" data-on-created="onCreated" data-text="カードを更新する" data-submit-text="カードを更新する"></script>
+                    <script type="text/javascript" src="https://checkout.pay.jp/" class="payjp-button" data-key="pk_test_3e5014cb0e4f4594df1f362e" data-on-created="onCreated" data-text="カードを変更する" data-submit-text="カードを変更する"></script>
                     @endif
               
 

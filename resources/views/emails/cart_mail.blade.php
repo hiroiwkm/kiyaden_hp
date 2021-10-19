@@ -6,7 +6,7 @@
             <td>{{ $c->qty }}</td>
         @endforeach
         </table>
-        <p>{{ $price_total}}</p>
+        <p>{{ $price_total }}</p>
         <p>{{ $name }}様</p>
         </br>
         <p>ありがとうございました</p>

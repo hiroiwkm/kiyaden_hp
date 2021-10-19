@@ -56,15 +56,41 @@
     <!-- 購入ボタン -->
     <div class="row d-flex align-items-center">
         <div class="col-sm-6 mb-3 mb-m-1 order-md-1 text-md-left">
-            <a href="/products">←商品一覧へもどる</a>
+            <a href="/products">←お買い物を続ける</a>
         </div>
+        @if($total == 0)
+        <div></div>
+        @else
         <div class="col-sm-6 order-md-2 text-right">
             <form method="POST" action="{{ route('carts.destroy') }}">
                 @csrf
                 <input type="hidden" name="_method" value="DELETE">
                 <button type="submit" class="btn btn-primary mb-4 btn-lg pl-5 pr-5">購入を確定する</button>
+
+<div class="btn samazon-submit-button" data-toggle="modal" data-target="#buy-confirm-modal">購入を確定する</div>
+
+          <div class="modal fade" id="buy-confirm-modal" data-backdrop="static" data-keyboard="false" tabindex="-1" role="dialog" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+              <div class="modal-dialog">
+                  <div class="modal-content">
+                       <div class="modal-header">
+                           <h5 class="modal-title" id="staticBackdropLabel">購入を確定しますか？</h5>
+                           <button type="button" class="close" data-dismiss="modal" aria-label="閉じる">
+                               <span aria-hidden="true">&times;</span>
+                           </button>
+                       </div>
+                       <div class="modal-footer">
+                           <button type="button" class="btn samazon-favorite-button border-dark text-dark" data-dismiss="modal">閉じる</button>
+                           <button type="submit" class="btn samazon-submit-button">購入</button>
+                       </div>
+                   </div>
+               </div>
+           </div>
+
+
+
             </form>
         </div>
+        @endif
     </div>
 </div>
 @endsection

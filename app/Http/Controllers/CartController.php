@@ -130,7 +130,6 @@ class CartController extends Controller
         \Payjp\Payjp::setApiKey($pay_jp_secret);
 
         $user = Auth::user();
-
         $cart = Cart::instance(Auth::user()->id)->content();
         $price_total = 0;
         foreach ($cart as $c) {
@@ -151,7 +150,7 @@ class CartController extends Controller
         // //入力されたメールアドレスにメールを送信
         Mail::to($user->email)->send(new CartSendmail($cart, $user, $price_total));
         //送信完了ページのviewを表示
-        return view('carts.thanks',['cart' => $cart]);
+        return view('carts.thanks',['cart' => $cart, 'price_total' => $price_total,'user'=>$user]);
     }
 
     public function purchase(Request $request){
