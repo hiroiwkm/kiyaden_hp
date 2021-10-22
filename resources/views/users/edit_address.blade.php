@@ -15,10 +15,10 @@
                 @csrf
                 <input type="hidden" name="_method" value="PUT">
                 <div class="form-group row">
-                    <label for="name" class="col-md-5 col-form-label text-md-left">氏名<span class="ml-1 samazon-require-input-label"><span class="samazon-require-input-label-text">必須</span></span></label>
+                    <label for="name" class="col-md-5 col-form-label text-md-left">氏名<span class="ml-1"><span class="samazon-require-input-label-text">必須</span></span></label>
 
                     <div class="col-md-7">
-                        <input id="name" type="text" class="form-control @error('name') is-invalid @enderror samazon-login-input" name="name" value="{{ $user->name }}" required autocomplete="name" autofocus placeholder="××　××">
+                        <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ $user->name }}" required autocomplete="name" autofocus placeholder="××　××">
 
                         @error('name')
                         <span class="invalid-feedback" role="alert">
@@ -29,7 +29,7 @@
                 </div>
 
                 <div class="form-group row">
-                    <label for="password" class="col-md-5 col-form-label text-md-left">郵便番号<span class="ml-1 samazon-require-input-label"><span class="samazon-require-input-label-text">必須</span></span></label>
+                    <label for="password" class="col-md-5 col-form-label text-md-left">郵便番号<span class="ml-1"><span class="samazon-require-input-label-text">必須</span></span></label>
 
                     <div class="col-md-7">
                         <input type="text" class="form-control @error('postal_code') is-invalid @enderror samazon-login-input" name="postal_code" value="{{ $user->postal_code }}" required placeholder="×××-××××">
@@ -48,7 +48,7 @@
                     <label for="password" class="col-md-5 col-form-label text-md-left">電話番号<span class="ml-1 samazon-require-input-label"><span class="samazon-require-input-label-text">必須</span></span></label>
 
                     <div class="col-md-7">
-                        <input type="text" class="form-control @error('phone') is-invalid @enderror samazon-login-input" name="phone" value="{{ $user->phone }}" required placeholder="×××-×××××-××××">
+                        <input type="text" class="form-control @error('phone') is-invalid @enderror samazon-login-input" name="tel_number" value="{{ $user->tel_number }}" required placeholder="×××-×××××-××××">
                     </div>
                 </div>
 
@@ -69,7 +69,7 @@
                 <hr>
 
                 <div class="form-group d-flex justify-content-end">
-                    <button type="submit" class="btn samazon-submit-button w-25">
+                    <button type="submit" class="btn btn-primary">
                         保存する
                     </button>
                 </div>

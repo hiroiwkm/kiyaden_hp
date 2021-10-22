@@ -68,7 +68,7 @@
                     </div>
                 </div>
                 <div class="d-flex align-items-center">
-                    <a href="{{route('mypage')}}">
+                    <a href="{{route('mypage.cart_history')}}">
                         <i class="fa fa-chevron-right fa-2x"></i>
                     </a>
                 </div>

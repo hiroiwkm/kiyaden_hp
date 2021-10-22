@@ -33,12 +33,16 @@ Route::delete('carts', 'CartController@destroy')->name('carts.destroy');
 //購入完了画面へ
 Route::get('/carts/thanks', 'CartController@purchase')->name('carts.purchase');
 
+//マイページ
 Route::get('users/mypage', 'UserController@mypage')->name('mypage');
 Route::get('users/mypage/edit', 'UserController@edit')->name('mypage.edit');
-Route::get('users/mypage/address/edit', 'UserController@edit_address')->name('mypage.edit_address');
+Route::get('users/mypage/address/edit', 'UserController@edit_address')->name('mypage.edit_address');//お届け先の変更
 Route::put('users/mypage', 'UserController@update')->name('mypage.update');
 Route::get('users/register_card', 'UserController@register_card')->name('mypage.register_card');
 Route::post('users/mypage/token', 'UserController@token')->name('mypage.token');
+Route::get('users/mypage/cart_history', 'UserController@cart_history_index')->name('mypage.cart_history');
+Route::get('users/mypage/cart_history/{num}', 'UserController@cart_history_show')->name('mypage.cart_history_show');
+Route::delete('users/mypage/delete', 'UserController@destroy')->name('mypage.destroy');
 
 //お問い合わせ確認画面へ
 Route::post('/contacts/confirm', 'ContactController@confirm')->name('contact.confirm');
@@ -46,4 +50,13 @@ Route::post('/contacts/confirm', 'ContactController@confirm')->name('contact.con
 Route::post('/contacts/thanks',  'ContactController@send')->name('contact.send');
 Route::get('/contacts/thanks', 'ContactController@index')->name('contact.thanks');
 
+//管理画面
+Route::get('/dashboard', 'DashboardController@index')->middleware('auth:admins');
 
+Route::group(['prefix' => 'dashboard', 'as' => 'dashboard.'], function () {
+    Route::get('login', 'Dashboard\Auth\LoginController@showLoginForm')->name('login');
+    Route::post('login', 'Dashboard\Auth\LoginController@login')->name('login');
+    Route::get('orders', 'Dashboard\OrderController@index')->middleware('auth:admins');
+    Route::resource('users', 'Dashboard\UserController')->middleware('auth:admins');
+});
+    

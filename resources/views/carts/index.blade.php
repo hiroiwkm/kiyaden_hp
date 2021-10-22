@@ -44,12 +44,10 @@
         <div class="col-12 text-right p-4">
             @if($total == 0)
             <hr>
-            <h5>合計金額:</h5>
-                <h2>{{$total}}円</h2>
+            <h2><span class="h5">合計金額：</span>{{$total}}円<span class="h6">(税込)</span></h2>
             @else
             <p>( + 送料：330円 )</p>
-                <h5>合計金額:</h5>
-                <h2>{{$total + 330}}円</h2>
+            <h2><span class="h5">合計金額：</span>{{$total + 330}}円<span class="h6">(税込)</span></h2>
             @endif
         </div>
     </div>
@@ -65,29 +63,25 @@
             <form method="POST" action="{{ route('carts.destroy') }}">
                 @csrf
                 <input type="hidden" name="_method" value="DELETE">
-                <button type="submit" class="btn btn-primary mb-4 btn-lg pl-5 pr-5">購入を確定する</button>
 
-<div class="btn samazon-submit-button" data-toggle="modal" data-target="#buy-confirm-modal">購入を確定する</div>
+                    <div class="btn btn-primary mb-4 btn-lg pl-5 pr-5" data-toggle="modal" data-target="#buy-confirm-modal">購入を確定する</div>
 
-          <div class="modal fade" id="buy-confirm-modal" data-backdrop="static" data-keyboard="false" tabindex="-1" role="dialog" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-              <div class="modal-dialog">
-                  <div class="modal-content">
-                       <div class="modal-header">
-                           <h5 class="modal-title" id="staticBackdropLabel">購入を確定しますか？</h5>
-                           <button type="button" class="close" data-dismiss="modal" aria-label="閉じる">
-                               <span aria-hidden="true">&times;</span>
-                           </button>
-                       </div>
-                       <div class="modal-footer">
-                           <button type="button" class="btn samazon-favorite-button border-dark text-dark" data-dismiss="modal">閉じる</button>
-                           <button type="submit" class="btn samazon-submit-button">購入</button>
-                       </div>
-                   </div>
-               </div>
-           </div>
-
-
-
+                    <div class="modal fade" id="buy-confirm-modal" data-backdrop="static" data-keyboard="false" tabindex="-1" role="dialog" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="staticBackdropLabel">購入を確定しますか？</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="閉じる">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn border-dark text-dark" data-dismiss="modal">閉じる</button>
+                                    <button type="submit" class="btn btn-primary">購入</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
             </form>
         </div>
         @endif

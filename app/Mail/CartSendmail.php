@@ -31,8 +31,8 @@ class CartSendmail extends Mailable
     public function build()
     {
         return $this
-        ->from('example@example.com')
-        ->subject('自動送信メール')
+        ->from('kiyaden@gmail.com')
+        ->subject('【ご注文ありがとうございます。】御菓子 司木屋傳')
         ->view('emails.cart_mail')
         ->with([
             'name' => $this->name,

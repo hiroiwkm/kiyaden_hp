@@ -27,7 +27,7 @@ class CartController extends Controller
         $cart = Cart::instance(Auth::user()->id)->content();
         $total = 0;
         foreach ($cart as $c) {
-            $total += $c->qty * $c->price;
+            $total += $c->qty * $c->price *1.08;
         }
                 
         return view('carts.index', compact('cart', 'total'));
@@ -117,24 +117,56 @@ class CartController extends Controller
      */
     public function destroy(Request $request)
     {
-        //購入時にカート内商品を全て消去
-        $user_shoppingcarts = DB::table('shoppingcart')->where('instance', Auth::user()->id)->get();
+        $user = Auth::user();
+        $user_shoppingcarts = DB::table('shoppingcart')->get();
+        $number = DB::table('shoppingcart')->where('instance', Auth::user()->id)->count();
+
         $count = $user_shoppingcarts->count();
+
         $count += 1;
-        Cart::instance(Auth::user()->id)->store;
-        DB::table('shoppingcart')->where('instance', Auth::user()->id)->where('number', null)->update(['number' => $count, 'buy_flag' => true]);
+        $number += 1;
+        $cart = Cart::instance(Auth::user()->id)->content();
+
+        $price_total = 330;
+        $qty_total = 0;
+
+        foreach ($cart as $c) {
+            // if ($c->options->carriage) {
+            //     $price_total += ($c->qty * $c->price *1.08);
+            // } else {
+                $price_total += $c->qty * $c->price *1.08;
+            // }
+            $qty_total += $c->qty;
+        }
+
+        Cart::instance(Auth::user()->id)->store($count);
+
+        DB::table('shoppingcart')->where('instance', Auth::user()->id)
+                                ->where('number', null)
+                                ->update(
+                                    [
+                                        'code' => substr(str_shuffle('1234567890abcdefghijklmnopqrstuvwxyz'), 0, 10),
+                                        'number' => $number, 
+                                        'price_total' => $price_total,
+                                        'qty' => $qty_total,
+                                        'buy_flag' => true, 
+                                        'updated_at' => date("Y/m/d H:i:s")
+                                    ]
+                                );
+
+
+        //購入時にカート内商品を全て消去
+        // $user_shoppingcarts = DB::table('shoppingcart')->where('instance', Auth::user()->id)->get();
+        // $count = $user_shoppingcarts->count();
+        // $count += 1;
+        // Cart::instance(Auth::user()->id)->store;
+        // DB::table('shoppingcart')->where('instance', Auth::user()->id)->where('number', null)->update(['number' => $count, 'buy_flag' => true]);
 
 
         //購入時に決済できるように
         $pay_jp_secret = "sk_test_459778734e47564a1215d334";
         \Payjp\Payjp::setApiKey($pay_jp_secret);
 
-        $user = Auth::user();
-        $cart = Cart::instance(Auth::user()->id)->content();
-        $price_total = 0;
-        foreach ($cart as $c) {
-            $price_total += $c->qty * $c->price;
-        }
 
         $res = \Payjp\Charge::create(
           [
@@ -149,6 +181,7 @@ class CartController extends Controller
 
         // //入力されたメールアドレスにメールを送信
         Mail::to($user->email)->send(new CartSendmail($cart, $user, $price_total));
+        Mail::to('hiroiwkm@gmail.com')->send(new CartSendmail($cart, $user, $price_total));
         //送信完了ページのviewを表示
         return view('carts.thanks',['cart' => $cart, 'price_total' => $price_total,'user'=>$user]);
     }

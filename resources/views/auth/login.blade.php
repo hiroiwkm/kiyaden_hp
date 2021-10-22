@@ -8,6 +8,12 @@
                 <div class="card-header">{{ __('ログイン') }}</div>
 
                 <div class="card-body">
+                    @if (session('warning'))
+                    <div class="alert alert-danger">
+                        {{ session('warning') }}
+                    </div>
+                    @endif
+
                     <form method="POST" action="{{ route('login') }}">
                         @csrf
                         <input type="hidden" name="_token" value="{{ csrf_token() }}" />
@@ -66,8 +72,8 @@
                             </div>
                         </div>
                     </form>
-                    <div class="col pt-3">
-                        <h6 class="text-center">初めてご購入される方は<a class="" href="/register">新規登録</a>を行ってください。</h6>
+                    <div class="col pt-5">
+                        <h6 class="text-center">初めてご購入される方は <a class="h5" href="/register">新規登録</a> を行ってください。</h6>
                         <h6 class="text-center">(商品の購入には登録が必要です。)</h6>
                     </div>
 
