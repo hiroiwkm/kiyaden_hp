@@ -2,10 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Category;
 use App\Product;
+use App\Category;
 use Illuminate\Http\Request;
-
 
 class ProductController extends Controller
 {
@@ -14,19 +13,10 @@ class ProductController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(Request $request)
+    public function index()
     {
-        if ($request->category !== null) {
-            $products = Product::where('category1', $request->category)->orwhere('category2', $request->category)->orwhere('category3', $request->category)->orwhere('category4', $request->category)->orwhere('category5', $request->category)->paginate(15);
-        }else{
-            $products = Product::all();
-        };
-
-            $categories = Category::all(); 
-            $selected_category = Category::find($request->category);
-
-            return view('products.index', ['products' => $products,'categories' => $categories, 'selected_category'=>$selected_category]);
-
+        $products = Product::all();
+        return view('products.index', compact('products'));
     }
 
     /**
@@ -36,7 +26,9 @@ class ProductController extends Controller
      */
     public function create()
     {
-        //
+        $categories = Category::all();
+
+        return view('products.create', compact('categories'));
     }
 
     /**
@@ -47,53 +39,68 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $product = new Product();
+        $product->name = $request->input('name');
+        $product->description = $request->input('description');
+        $product->price = $request->input('price');
+        $product->category_id = $request->input('category_id');
+        $product->save();
+
+        return redirect()->route('products.show', ['id' => $product->id]);
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param  \App\Product  $product
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Product $product)
     {
-        $product = Product::find($id);
-        
-        return view('products.show', ['product' => $product]);
+        return view('products.show', compact('product'));
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param  \App\Product  $product
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Product $product)
     {
-        //
+        $categories = Category::all();
+
+        return view('products.edit', compact('product', 'catefories'));
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param  \App\Product  $product
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Product $product)
     {
-        //
+        $product->name = $request->input('name');
+        $product->description = $request->input('description');
+        $product->price = $request->input('price');
+        $product->category_id = $request->input('category_id');
+        $product->update();
+
+        return redirect()->route('products.show', ['id' => $product->id]);
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param  \App\Product  $product
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Product $product)
     {
-        //
+        $product->delete();
+
+        return redirect()->route('products.index');
     }
 }

@@ -15,8 +15,8 @@ use App\Http\Controllers\Controller;
 
 Route::get('/', 'HelloController@index')->name('welcome');
 
-
-Route::resource('/products', 'ProductController');
+Route::resource('products', 'ProductController');
+// Route::resource('/products', 'ProductController');
 
 Route::resource('news', 'NewsController');
 
