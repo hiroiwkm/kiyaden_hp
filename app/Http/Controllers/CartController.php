@@ -127,8 +127,12 @@ class CartController extends Controller
         $number += 1;
         $cart = Cart::instance(Auth::user()->id)->content();
 
-        $price_total = 330;
+        $price_total = 0;
         $qty_total = 0;
+
+        $del_date = $request->del_date;
+        $del_time = $request->del_time;
+
 
         foreach ($cart as $c) {
             // if ($c->options->carriage) {
@@ -154,15 +158,6 @@ class CartController extends Controller
                                     ]
                                 );
 
-
-        //購入時にカート内商品を全て消去
-        // $user_shoppingcarts = DB::table('shoppingcart')->where('instance', Auth::user()->id)->get();
-        // $count = $user_shoppingcarts->count();
-        // $count += 1;
-        // Cart::instance(Auth::user()->id)->store;
-        // DB::table('shoppingcart')->where('instance', Auth::user()->id)->where('number', null)->update(['number' => $count, 'buy_flag' => true]);
-
-
         //購入時に決済できるように
         $pay_jp_secret = "sk_test_459778734e47564a1215d334";
         \Payjp\Payjp::setApiKey($pay_jp_secret);
@@ -183,7 +178,7 @@ class CartController extends Controller
         Mail::to($user->email)->send(new CartSendmail($cart, $user, $price_total));
         Mail::to('hiroiwkm@gmail.com')->send(new CartSendmail($cart, $user, $price_total));
         //送信完了ページのviewを表示
-        return view('carts.thanks',['cart' => $cart, 'price_total' => $price_total,'user'=>$user]);
+        return view('carts.thanks',['cart' => $cart, 'price_total' => $price_total,'user'=>$user,'del_date'=>$del_date, 'del_time'=>$del_time]);
     }
 
     public function purchase(Request $request){

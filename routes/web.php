@@ -44,10 +44,8 @@ Route::get('users/mypage/cart_history', 'UserController@cart_history_index')->na
 Route::get('users/mypage/cart_history/{num}', 'UserController@cart_history_show')->name('mypage.cart_history_show');
 Route::delete('users/mypage/delete', 'UserController@destroy')->name('mypage.destroy');
 
-//お問い合わせ確認画面へ
-Route::post('/contacts/confirm', 'ContactController@confirm')->name('contact.confirm');
 // お問い合わせ完了画面へ
-Route::post('/contacts/thanks',  'ContactController@send')->name('contact.send');
+Route::post('/contacts/thanks', 'ContactController@send')->name('contact.send');
 Route::get('/contacts/thanks', 'ContactController@index')->name('contact.thanks');
 
 //管理画面
@@ -59,4 +57,8 @@ Route::group(['prefix' => 'dashboard', 'as' => 'dashboard.'], function () {
     Route::get('orders', 'Dashboard\OrderController@index')->middleware('auth:admins');
     Route::resource('users', 'Dashboard\UserController')->middleware('auth:admins');
 });
+
+Route::get('guide', 'GuideController@index');
+Route::get('/tokusyouhou','GuideController@tokusyouhou');
+Route::get('/kojinjouhou','GuideController@kojinjouhou');
     

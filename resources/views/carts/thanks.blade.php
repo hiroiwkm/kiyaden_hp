@@ -25,6 +25,13 @@
         <div class="py-1">
             <h5>■お届け先：{{ $user->name }}様　 {{ $user->address }}</h5>
         </div>
+        <div class="py-1">
+            <h5>■希望配送日：{{ $del_date }}　</h5>
+        </div>
+        <div class="py-1">
+            <h5>■希望配送時間：{{ $del_time }}　</h5>
+        </div>
+
 
     </div>
 </div>

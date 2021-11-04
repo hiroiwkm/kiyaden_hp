@@ -37,7 +37,8 @@ class CartSendmail extends Mailable
         ->with([
             'name' => $this->name,
             'cart' => $this->cart,
-            'price_total' => $this->price_total
+            'price_total' => $this->price_total,
+            
         ]);
 
     }

@@ -3,14 +3,15 @@
              <button class="navbar-toggler text-white" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="#navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
                   <i class="fa fa-bars fa-lg"></i>
               </button>
-              <a class="navbar-brand col-7 col-lg-3 text-center p-0 m-0" href="/"><img class="img-fluid" src="{{ asset('img/footer_logo.png') }}" alt="..." /></a>
+              <a class="navbar-brand col-7 col-lg-3 text-center p-0 m-0" href="/"><img class="img-fluid" src="{{ asset('img/shop_logo.png') }}" alt="..." /></a>
              <div class="collapse navbar-collapse navbar-expand-lg bg-primary" id="navbarResponsive">
                 <ul class="navbar-nav">
                   <li class="nav-item px-2 h6"><a class="nav-link text-white" href="/#about">木屋傳について</a></li>
                   <li class="nav-item px-2 h6"><a class="nav-link text-white" href="/#news">お知らせ</a></li>
-                  <li class="nav-item px-2 h6"><a class="nav-link text-white" href="/products">商品一覧</a></li>
+                  <li class="nav-item px-2 h6"><a class="nav-link text-white" href="/products">お取り寄せ</a></li>
                   <li class="nav-item px-2 h6"><a class="nav-link text-white" href="/#infomation">店舗情報</a></li>
                   <li class="nav-item px-2 h6"><a class="nav-link text-white" href="/#contact">お問い合わせ</a></li>
+                  <li class="nav-item px-2 h6"><a class="nav-link text-white" href="/guide">お買い物ガイド</a></li>
                 </ul>
               </div>
                 @if(Auth::check())

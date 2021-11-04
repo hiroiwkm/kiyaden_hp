@@ -1,5 +1,40 @@
-{{$product->name}}
-{{$product->description}}
-{{$product->price}} 
+@extends('layouts.app')
 
-<a href="/products">Back</a>
+@section('content')
+        <div class="col-md-12 ml-sm-auto col-lg-12 px-4" style="margin-top:66px;">
+            <div class="row py-5">
+                <div class="col-md-5">
+                    <img class="img-fluid shadow" src="{{ asset($product->img_url) }}" alt="{{ $product->name }}" />
+                </div>
+                <div class="col-md-7 pt-4">
+                    <h3>{{ $product->name }}</h3>
+                    <div class="py-3">
+                        <h5 class="py-3">{{ $product->description }}</h5>
+                        <h5 class="py-3">{{ $product->price }}円(税抜)</h5>
+                            @if(Auth::check())
+                            <div class="bg-transparent">
+                                <form method="POST" action="{{ route('carts.store') }}"　class="form-inline">
+                                @csrf
+                                    <input type="hidden" name="id" value="{{ $product->id }}">
+                                    <input type="hidden" name="name" value="{{ $product->name }}">
+                                    <input type="hidden" name="price" value="{{ $product->price }}">
+                                    <input type="hidden" name="weight" value="1">
+                                    <input type="hidden" name="carriage" value=330>
+                                    <input class="form-control form-control-lg text-center" style="width:70px;" type="number" id="quantity" name="qty" min="1" value="1">
+                                    <input type="hidden" name="options" value="{{ $product->id }}">
+                                    <button class="btn btn-outline-dark mt-3"　type="submit">カートに追加</button>
+                                </form>
+                            @else
+                                    <input class="form-control form-control-lg text-center" style="width:70px;" type="number" id="quantity" name="qty" min="1" value="1">
+                                    <a href="/login"><button class="btn btn-outline-dark mt-3"　type="submit">カートに追加</button></a>                         
+                            </div> 
+                            @endif
+                    </div>
+                    <div class="py-4">
+                        <a href="/products">←商品一覧に戻る</a>                            
+                        </div>
+
+                </div>
+            </div>
+        </div>
+@endsection

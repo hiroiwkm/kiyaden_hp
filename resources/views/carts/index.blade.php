@@ -37,51 +37,64 @@
                         </div>
                     </div>                   
                     @endforeach 
-        @endif
+                @endif
  
     <!-- 合計金額 -->
     <div class="row">
         <div class="col-12 text-right p-4">
-            @if($total == 0)
-            <hr>
-            <h2><span class="h5">合計金額：</span>{{$total}}円<span class="h6">(税込)</span></h2>
-            @else
-            <p>( + 送料：330円 )</p>
-            <h2><span class="h5">合計金額：</span>{{$total + 330}}円<span class="h6">(税込)</span></h2>
-            @endif
+            <h2><span class="h5">合計金額：</span>{{$total }}円<span class="h6">(税込)</span></h2>
         </div>
     </div>
     <!-- 購入ボタン -->
     <div class="row d-flex align-items-center">
-        <div class="col-sm-6 mb-3 mb-m-1 order-md-1 text-md-left">
-            <a href="/products">←お買い物を続ける</a>
-        </div>
         @if($total == 0)
         <div></div>
         @else
-        <div class="col-sm-6 order-md-2 text-right">
+        <div class="col-12 border-top p-4">
             <form method="POST" action="{{ route('carts.destroy') }}">
                 @csrf
                 <input type="hidden" name="_method" value="DELETE">
+                <div class="row">
+                    <div class="col-12 col-md-3 form-floating mb-3">
+                        <label for="name">希望配送日</label>
+                        <input class="form-control" type="date" name="del_date" value="<?php echo date('Y-m-d'); ?>" min="<?php echo date('Y-m-d'); ?>" placeholder="希望配送日を選択" data-sb-validations="required" />
+                    </div>
+                    <div class="col-12 col-md-3 form-floating mb-3">
+                        <label for="text">希望配送時間</label>
+                        <select class="form-control" name="del_time">
+                            <option value="希望無し">希望無し</option>
+                            <option value="am">午前</option>
+                            <option value="pm">午後</option>
+                        </select>
+                    </div>
+                    <div class="col-12 col-md-3 form-floating mb-3">
+                        <label for="text">お支払い方法</label>
+                        <select class="form-control" name="payment">
+                            <option value="クレジットカード">クレジットカード</option>
+                        </select>
+                    </div>
+                </div>
 
-                    <div class="btn btn-primary mb-4 btn-lg pl-5 pr-5" data-toggle="modal" data-target="#buy-confirm-modal">購入を確定する</div>
+                <div class="btn btn-primary my-4 btn-lg px-5" data-toggle="modal" data-target="#buy-confirm-modal">購入を確定する</div>
+                <a href="/products"><p class="text-left">←お買い物を続ける</p></a>
 
-                    <div class="modal fade" id="buy-confirm-modal" data-backdrop="static" data-keyboard="false" tabindex="-1" role="dialog" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-                        <div class="modal-dialog">
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                    <h5 class="modal-title" id="staticBackdropLabel">購入を確定しますか？</h5>
-                                    <button type="button" class="close" data-dismiss="modal" aria-label="閉じる">
-                                        <span aria-hidden="true">&times;</span>
-                                    </button>
-                                </div>
-                                <div class="modal-footer">
-                                    <button type="button" class="btn border-dark text-dark" data-dismiss="modal">閉じる</button>
-                                    <button type="submit" class="btn btn-primary">購入</button>
-                                </div>
+                <!-- モーダル -->
+                <div class="modal fade" id="buy-confirm-modal" data-backdrop="static" data-keyboard="false" tabindex="-1" role="dialog" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="staticBackdropLabel">購入を確定しますか？</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="閉じる">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn border-dark text-dark" data-dismiss="modal">閉じる</button>
+                                <button type="submit" class="btn btn-primary">購入</button>
                             </div>
                         </div>
                     </div>
+                </div>
             </form>
         </div>
         @endif
